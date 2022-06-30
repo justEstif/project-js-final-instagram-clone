@@ -1,4 +1,5 @@
-export function seedDatabase(firebase) {
+import { addDoc, collection } from "firebase/firestore";
+export function seedDatabase(db) {
   // ! user documents for the users collection
   const users = [
     {
@@ -40,15 +41,15 @@ export function seedDatabase(firebase) {
   ];
 
   // for loop goes through the users array, and creates a new user with the object's properties
-  for (let k = 0; k < users.length; k++) {
-    firebase.firestore().collection("users").add(users[k]);
-  }
+  const addUsers = async () => {
+    for (let k = 0; k < users.length; k++) {
+      await addDoc(collection(db, "users"), users[k]);
+    }
+  };
 
-  for (let i = 1; i <= 5; ++i) {
-    firebase
-      .firestore()
-      .collection("photos")
-      .add({
+  const addPhotos = async () => {
+    for (let i = 1; i <= 5; ++i) {
+      await addDoc(collection(db, "photos"), {
         photoId: i,
         userId: "2",
         imageSrc: `/images/users/raphael/${i}.jpg`,
@@ -68,5 +69,9 @@ export function seedDatabase(firebase) {
         userLongitude: "74.0060°",
         dateCreated: Date.now(),
       });
-  }
+    }
+  };
+
+  addUsers();
+  addPhotos();
 }
