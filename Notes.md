@@ -6,6 +6,7 @@
   - `firebase` db
   - `react-loading-screen` animated loading skeletons
   - `react-router-dom` different pages
+  - `prop-types`
 
 - architecture
 
@@ -22,9 +23,7 @@
   - hooks: custom hooks
   - lib: firebase
   - services: firebase functions
-  - styles
-    - app
-    - tailwind
+  - styles: tailwind and app
 
 - db structure
 
