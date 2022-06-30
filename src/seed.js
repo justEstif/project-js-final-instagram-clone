@@ -1,6 +1,5 @@
 import { addDoc, collection } from "firebase/firestore";
 export function seedDatabase(db) {
-  // ! user documents for the users collection
   const users = [
     {
       userId: "Jjd3IDGwpgNCMcIVTdQMsxyP1t12",
@@ -40,7 +39,6 @@ export function seedDatabase(db) {
     },
   ];
 
-  // for loop goes through the users array, and creates a new user with the object's properties
   const addUsers = async () => {
     for (let k = 0; k < users.length; k++) {
       await addDoc(collection(db, "users"), users[k]);

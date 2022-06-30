@@ -5,13 +5,12 @@
   - `data-fns` for date formating
   - `firebase` db
   - `react-loading-screen` animated loading skeletons
+  - `react-router-dom` different pages
 
 - architecture
 
   - client side rendered app: react (cra)
-  - database: Firebase
-    - storing links to the images on firebase
-  - dependencies: react-loading-screen
+  - database: firebase
   - styling: tailwind
 
 - src structure
@@ -43,3 +42,5 @@
 
   - In the seed data, we have a `userId` property that is included in each document of the users collection.
     - Each document refers to each individual user that has signed up, and it is connected to them using there id.
+
+- after calling the seed documents function once -> removed from the lib js
