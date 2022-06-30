@@ -44,3 +44,5 @@
     - Each document refers to each individual user that has signed up, and it is connected to them using there id.
 
 - after calling the seed documents function once -> removed from the lib js
+
+- using `React.lazy` for dynamic import and a fallback component to improve performance
