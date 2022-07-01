@@ -1,15 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db, auth } from "../lib/firebase";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
 import { doesUsernameExist } from "../services/firebase";
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 export default function SignUp() {
   const navigate = useNavigate(); // naviagate to diff page on login
 
@@ -28,14 +24,13 @@ export default function SignUp() {
     setError("");
     try {
       const usernameExists = await doesUsernameExist(username);
+      // ! if a user doesn't exist
       if (!usernameExists) {
         await createUserWithEmailAndPassword(auth, emailAddress, password);
-
         await updateProfile(auth.currentUser, {
           displayName: username,
         });
-
-        const userInfo = {
+        await addDoc(collection(db, "users"), {
           userId: auth.currentUser.uid,
           username: username.toLowerCase(),
           fullName: fullName,
@@ -43,12 +38,8 @@ export default function SignUp() {
           following: [],
           followers: [],
           dateCreated: Date.now(),
-        };
-
-        const usersRef = collection(db, "users");
-        await addDoc(usersRef, userInfo);
-
-        // navigate(ROUTES.DASHBOARD);
+        });
+        navigate(ROUTES.DASHBOARD);
       } else {
         setError("That username is already take, please try another.");
       }

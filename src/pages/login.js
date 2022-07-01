@@ -6,13 +6,13 @@ import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
 
 export default function Login() {
-  const navigate = useNavigate(); // naviagate to diff page on login
+  const navigate = useNavigate();
 
   const { firebase } = useContext(FirebaseContext);
 
-  const [emailAddress, setEmailAddress] = useState(""); // user signup info
+  const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // if user provides wrong email || pw
+  const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
   const handleLogin = async (event) => {

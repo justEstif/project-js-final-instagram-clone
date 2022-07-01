@@ -6,6 +6,5 @@ export async function doesUsernameExist(username) {
   const usersRef = collection(db, "users");
   const q = query(usersRef, where("username", "==", username));
   const querySnapshot = await getDocs(q);
-
-  return querySnapshot.docs.length > 0;
+  return querySnapshot.docs.length > 0; // return true if some doc exists
 }
