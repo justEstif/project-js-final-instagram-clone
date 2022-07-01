@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
 
 const Login = lazy(() => import("./pages/login"));
+
 function App() {
   return (
     <Router>

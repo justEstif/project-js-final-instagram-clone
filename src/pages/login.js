@@ -1,5 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
 
 export default function Login(params) {
@@ -12,7 +15,41 @@ export default function Login(params) {
   const [error, setError] = useState(""); // if user provides wrong email || pw
   const isInvalid = password === "" || emailAddress === "";
 
-  const handleLogin = () => {};
+  const handleLogin = async (event) => {
+    const login = () =>
+      signInWithEmailAndPassword(auth, emailAddress, password);
+    event.preventDefault();
+    setError("");
+    try {
+      await login();
+      navigate(ROUTES.DASHBOARD);
+    } catch (error) {
+      setEmailAddress("");
+      setPassword("");
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("Your email address appears to be malformed.");
+          break;
+        case "auth/wrong-password":
+          setError("Your password is wrong.");
+          break;
+        case "auth/user-not-found":
+          setError("User with this email doesn't exist.");
+          break;
+        case "auth/user-disabled":
+          setError("User with this email has been disuserabled.");
+          break;
+        case "auth/too-many-requests":
+          setError("Too many requests. Try again later.");
+          break;
+        case "auth/operation-not-allowed":
+          setError("Signing in with Email and Password is not enabled.");
+          break;
+        default:
+          setError("An undefined Error happened.");
+      }
+    }
+  };
 
   useEffect(() => {
     document.title = "Login - Instagram";
@@ -35,8 +72,8 @@ export default function Login(params) {
               className="my-2 w-6/12"
             />
           </h1>
-          {error && <p className="mb-4 text-xs text-red-primary">Hello</p>}
-          <form onSubmit={handleLogin} method="post">
+          {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
+          <form onSubmit={(e) => handleLogin(e)} method="post">
             <input
               aria-label="Enter your email address"
               type="text"
