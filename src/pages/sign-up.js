@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
-import { doesUsernameExist } from "../services/firebase";
+import { DoesUsernameExist } from "../services/firebase";
 import { addDoc, collection } from "firebase/firestore";
 export default function SignUp() {
   const navigate = useNavigate(); // naviagate to diff page on login
@@ -24,7 +24,7 @@ export default function SignUp() {
     event.preventDefault();
     setError("");
     try {
-      const usernameExists = await doesUsernameExist(username);
+      const usernameExists = await DoesUsernameExist(username);
       // ! if a user doesn't exist
       if (!usernameExists) {
         await createUserWithEmailAndPassword(auth, emailAddress, password);
