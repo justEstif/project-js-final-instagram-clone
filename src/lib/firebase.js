@@ -10,8 +10,11 @@ const config = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
-const firebase = initializeApp(config);
-const db = getFirestore(firebase);
-const auth = getAuth(firebase);
+
+const app = initializeApp(config);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+const firebase = { app, db, auth };
 
 export { auth, FieldValue, firebase, db };
