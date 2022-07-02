@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import FirebaseContext from "../context/firebase";
-import UserContext from "../context/user";
 import { onAuthStateChanged } from "firebase/auth";
+import UserContext from "../context/user";
 
 const useAuthListener = () => {
   const [user, setUser] = useState(
@@ -10,7 +10,7 @@ const useAuthListener = () => {
 
   const {
     firebase: { auth },
-  } = FirebaseContext;
+  } = useContext(FirebaseContext);
   useEffect(() => {
     const listener = onAuthStateChanged(auth, (authUser) => {
       // if we have a user -> we can store the user in LS
