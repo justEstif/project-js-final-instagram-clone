@@ -17,4 +17,4 @@ const auth = getAuth(app);
 
 const firebase = { app, db, auth };
 
-export { auth, FieldValue, firebase, db };
+export { FieldValue, firebase };
