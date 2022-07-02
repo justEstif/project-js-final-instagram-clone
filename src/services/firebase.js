@@ -1,5 +1,4 @@
-import { firebase, FieldValue } from "../lib/firebase";
-import { db } from "../lib/firebase";
+import { db, firebase, FieldValue } from "../lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 export async function doesUsernameExist(username) {
