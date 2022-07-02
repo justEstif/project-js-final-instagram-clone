@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { db, auth } from "../lib/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
@@ -9,7 +8,9 @@ import { addDoc, collection } from "firebase/firestore";
 export default function SignUp() {
   const navigate = useNavigate(); // naviagate to diff page on login
 
-  const { firebase } = useContext(FirebaseContext);
+  const {
+    firebase: { db, auth },
+  } = useContext(FirebaseContext);
 
   const [emailAddress, setEmailAddress] = useState(""); // user signup info
   const [password, setPassword] = useState("");

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-// import { useContext } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
-// import FirebaseContext from "../context/firebase";
+import FirebaseContext from "../context/firebase";
 
 export default function Login() {
   const navigate = useNavigate();
 
-  // const { firebase } = useContext(FirebaseContext);
+  const {
+    firebase: { auth },
+  } = useContext(FirebaseContext);
 
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
