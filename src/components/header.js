@@ -8,7 +8,7 @@ import { getImg } from "../helpers/header";
 const Header = () => {
   // importing context
   const {
-    firebase: { auth, db },
+    firebase: { auth },
   } = useContext(FirebaseContext);
 
   const { user } = useContext(UserContext);
@@ -19,6 +19,7 @@ const Header = () => {
           <div className="text-gray-700 text-center flex items-center justify-center cursor-pointer">
             <h1 className="flex w-full">
               <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
+                {/* * instagram logo */}
                 <img
                   src="/images/logo.png"
                   className="mt-2 w-6/12"
@@ -29,6 +30,7 @@ const Header = () => {
           </div>
           <div className="text-gray-700 text-center flex items-center justify-center">
             {user ? (
+              // if active user
               <Fragment>
                 <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
                   <svg
@@ -75,6 +77,7 @@ const Header = () => {
                 </div>
               </Fragment>
             ) : (
+              // if user isn't logged in
               <Fragment>
                 <Link to={ROUTES.LOGIN}>
                   <button
