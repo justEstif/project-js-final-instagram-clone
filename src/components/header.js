@@ -75,7 +75,22 @@ const Header = () => {
                 </div>
               </Fragment>
             ) : (
-              <Link to={ROUTES.LOGIN}></Link>
+              <Fragment>
+                <Link to={ROUTES.LOGIN}>
+                  <button
+                    type="button"
+                    className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8  flex items-center justify-center">
+                    Log In
+                  </button>
+                </Link>
+                <Link to={ROUTES.SIGN_UP}>
+                  <button
+                    type="button"
+                    className=" text-blue-medium font-bold text-sm rounded w-20 h-8">
+                    Sign Up
+                  </button>
+                </Link>
+              </Fragment>
             )}
           </div>
         </div>
