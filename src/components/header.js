@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import FirebaseContext from "../context/firebase";
 import UserContext from "../context/user";
 import * as ROUTES from "../constants/routes";
+import { getImg } from "../helpers/header";
 const Header = () => {
+  // importing context
   const {
     firebase: { auth, db },
   } = useContext(FirebaseContext);
@@ -62,6 +64,15 @@ const Header = () => {
                     />
                   </svg>
                 </button>
+                <div className="flex items-center cursor-pointer">
+                  <Link to={`/p/${user.displayName}`}>
+                    <img
+                      className="rounded-full h-8 w-8 flex"
+                      src={getImg(`/images/avatars/${user.displayName}.jpg`)}
+                      alt={`${user.displayName} img`}
+                    />
+                  </Link>
+                </div>
               </Fragment>
             ) : (
               <Link to={ROUTES.LOGIN}></Link>
