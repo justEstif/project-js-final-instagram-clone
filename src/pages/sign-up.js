@@ -20,8 +20,8 @@ export default function SignUp() {
   const [error, setError] = useState(""); // if user provides wrong email || pw
   const isInvalid = password === "" || emailAddress === "";
 
-  const handleSignup = async (event) => {
-    event.preventDefault();
+  const handleSignup = async ({ preventDefault }) => {
+    preventDefault();
     setError("");
     try {
       const usernameExists = await doesUsernameExist(username);
@@ -81,7 +81,7 @@ export default function SignUp() {
               type="text"
               placeholder="Username"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
-              onChange={({ target }) => setUsername(target.value)}
+              onChange={({ target: { value } }) => setUsername(value)}
               value={username}
             />
             <input
@@ -89,7 +89,7 @@ export default function SignUp() {
               type="text"
               placeholder="Full Name"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
-              onChange={({ target }) => setFullName(target.value)}
+              onChange={({ target: { value } }) => setFullName(value)}
               value={fullName}
             />
             <input
@@ -97,7 +97,7 @@ export default function SignUp() {
               type="text"
               placeholder="Email address"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
-              onChange={({ target }) => setEmailAddress(target.value)}
+              onChange={({ target: { value } }) => setEmailAddress(value)}
               value={emailAddress}
             />
             <input
@@ -105,7 +105,7 @@ export default function SignUp() {
               type="password"
               placeholder="Password"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
-              onChange={({ target }) => setPassword(target.value)}
+              onChange={({ target: { value } }) => setPassword(value)}
               value={password}
             />
             <button
