@@ -1,12 +1,6 @@
 # Notes
 
-- dependencies
-
-  - `data-fns` for date formating
-  - `firebase` db
-  - `react-loading-screen` animated loading skeletons
-  - `react-router-dom` different pages
-  - `prop-types` type checking
+## Planning
 
 - architecture
 
@@ -18,28 +12,45 @@
 
   - components
   - constants: paths and routes
-  - context
+  - context: user and firebase context
   - helpers: protected routes
   - hooks: custom hooks
   - lib: firebase
   - services: firebase functions
-  - styles: tailwind and app
+  - styles: tailwind
 
-- db structure
+- firebase
 
-  - collections
-    - users
-    - photos
-
-- setup firebase
-
-  - create the firebase project
-  - firestore cloud db: set rules as test for now
+  - firestore
+    - db structure
+      - collections
+        - users: stores referece to photos
+        - photos
   - firebase authentication
+    - using email and password
 
-- when a user is created the are assigned a unique id, which is used to track them.
+- dependencies
+
+  - `firebase`
+  - `data-fns` for date formating
+  - `react-loading-screen` animated loading skeletons
+  - `react-router-dom` different pages
+  - `prop-types` type checking
+
+## Making the context
+
+- `FirebaseContext`: shares the db, auth, app to the entire app
+- `UserContext`: shares the user to the entire app
+
+- when a user is created they are assigned a unique id, which is used to track them.
 
   - In the seed data, we have a `userId` property that is included in each document of the users collection.
     - Each document refers to each individual user that has signed up, and it is connected to them using there id.
 
 - using `React.lazy` for dynamic import and a fallback component to improve performance
+
+## Hooks
+
+- `use-auth-listener`
+  - when user is logged add: add user to the LS(if empty) and set the user in the user context to current user
+  - when user is logged out: remove the user from the LS and set the user in the user context to null
