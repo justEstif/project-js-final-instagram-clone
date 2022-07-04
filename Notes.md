@@ -33,7 +33,7 @@
 
   - `firebase`
   - `data-fns` for date formating
-  - `react-loading-screen` animated loading skeletons
+  - `react-loading-skeleton` animated loading screens
   - `react-router-dom` different pages
   - `prop-types` type checking
 
