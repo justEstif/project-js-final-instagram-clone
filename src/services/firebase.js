@@ -22,19 +22,15 @@ export async function getUserByUserId(userId) {
 
 export async function getSuggestedProfiles(userId, following) {
   const usersRef = collection(db, "users");
-  const result = await getDocs(usersRef, limit(10));
+  const resultDoc = await getDocs(usersRef, limit(10));
 
-  // returns all the users not having the same id or is in following
-  const returned = result.docs
+  //, return users not having same id or in following array
+  return resultDoc.docs
     .map((item) => ({
       ...item.data(),
       docId: item.id,
     }))
-    .filter((item) => {
-      if (item.userId === userId || following.includes(item.userId))
-        return false;
-      return true;
-    });
-
-  return returned;
+    .filter(
+      (item) => item.userId !== userId && !following.includes(item.userId)
+    );
 }

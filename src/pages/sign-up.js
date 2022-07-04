@@ -6,12 +6,13 @@ import FirebaseContext from "../context/firebase";
 import { doesUsernameExist } from "../services/firebase";
 import { addDoc, collection } from "firebase/firestore";
 export default function SignUp() {
-  const [emailAddress, setEmailAddress] = useState("");
+  const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate(); // navigate to diff page on login
+  const [emailAddress, setEmailAddress] = useState("");
+
+  const navigate = useNavigate();
   const isInvalid = password === "" || emailAddress === "";
 
   const {
@@ -27,7 +28,6 @@ export default function SignUp() {
     setError("");
     try {
       const usernameExists = await doesUsernameExist(username);
-      // ! if a user doesn't exist
       if (!usernameExists) {
         await createUserWithEmailAndPassword(auth, emailAddress, password);
         await updateProfile(auth.currentUser, {
@@ -50,8 +50,8 @@ export default function SignUp() {
       setError(error.message);
       setUsername("");
       setFullName("");
-      setEmailAddress("");
       setPassword("");
+      setEmailAddress("");
     }
   };
 

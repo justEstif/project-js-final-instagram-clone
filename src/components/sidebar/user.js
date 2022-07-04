@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-
 import getImg from "../../utils/getImg";
 
 const User = ({ username, fullName }) => {
@@ -17,7 +16,6 @@ const User = ({ username, fullName }) => {
               className="rounded-full w-16 flex mr-3"
               src={getImg(`/images/avatars/${username}.jpg`)}
               alt="user profile img"
-              loading="lazy"
             />
           </div>
           <div className="col-span-3">
