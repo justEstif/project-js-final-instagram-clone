@@ -1,5 +1,5 @@
 import { firebase } from "../lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
 const { db } = firebase;
 
 export async function doesUsernameExist(username) {
@@ -18,4 +18,23 @@ export async function getUserByUserId(userId) {
     docId: item.id,
   }));
   return user;
+}
+
+export async function getSuggestedProfiles(userId, following) {
+  const usersRef = collection(db, "users");
+  const result = await getDocs(usersRef, limit(10));
+
+  // returns all the users not having the same id or is in following
+  const returned = result.docs
+    .map((item) => ({
+      ...item.data(),
+      docId: item.id,
+    }))
+    .filter((item) => {
+      if (item.userId === userId || following.includes(item.userId))
+        return false;
+      return true;
+    });
+
+  return returned;
 }
