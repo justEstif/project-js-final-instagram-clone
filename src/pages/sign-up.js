@@ -6,19 +6,21 @@ import FirebaseContext from "../context/firebase";
 import { doesUsernameExist } from "../services/firebase";
 import { addDoc, collection } from "firebase/firestore";
 export default function SignUp() {
-  const navigate = useNavigate(); // naviagate to diff page on login
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // navigate to diff page on login
+  const isInvalid = password === "" || emailAddress === "";
 
   const {
     firebase: { db, auth },
   } = useContext(FirebaseContext);
 
-  const [emailAddress, setEmailAddress] = useState(""); // user signup info
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [fullName, setFullName] = useState("");
-
-  const [error, setError] = useState(""); // if user provides wrong email || pw
-  const isInvalid = password === "" || emailAddress === "";
+  useEffect(() => {
+    document.title = "Signup - Instagram";
+  }, []);
 
   const handleSignup = async ({ preventDefault }) => {
     preventDefault();
@@ -52,10 +54,6 @@ export default function SignUp() {
       setPassword("");
     }
   };
-
-  useEffect(() => {
-    document.title = "Signup - Instagram";
-  }, []);
 
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
