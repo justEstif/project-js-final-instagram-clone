@@ -52,8 +52,19 @@
 ## Hooks
 
 - `use-auth-listener`
-  - when user is logged add: add user to the LS(if empty) and set the user in the user context to current user
+  - when user is logged add user to the LS(if empty) and set the user in the user context to current user
   - when user is logged out: remove the user from the LS and set the user in the user context to null
 
 - `use-user`
   - when a user logs in, get the user data from the db using the user id.
+
+## Components
+
+- sidebar
+
+  - the sidebar component will have many parts, so we are putting it in a subdirectory in components
+
+- header
+
+  - the header component will be dynamic, if the user is logged in or not
+    - we get the user from the user context
