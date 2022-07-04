@@ -42,4 +42,8 @@ const Suggestions = ({ userId, following }) => {
   );
 };
 
+Suggestions.propTypes = {
+  userId: PropTypes.string,
+  following: PropTypes.array,
+};
 export default Suggestions;
