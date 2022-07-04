@@ -1,7 +1,6 @@
-// , we don't want to show users that are already in followers list
 import { Fragment, useState, useEffect } from "react";
-import PropTypes, { string } from "prop-types";
 import Skeleton from "react-loading-skeleton";
+import PropTypes from "prop-types";
 import { getSuggestedProfiles } from "../../services/firebase";
 import SuggestedProfile from "./suggestedProfile";
 const Suggestions = ({ userId, following }) => {
@@ -11,10 +10,9 @@ const Suggestions = ({ userId, following }) => {
     const suggestedProfiles = async () => {
       const response = await getSuggestedProfiles(userId, following);
       setProfiles(response);
-      console.log("profiles:", profiles);
     };
     userId && suggestedProfiles();
-  }, [userId]);
+  }, [userId, following]);
 
   return (
     <Fragment>
