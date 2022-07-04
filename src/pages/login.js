@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import FirebaseContext from "../context/firebase";
+import { getLoginError } from "../utils/getLoginError";
 
-export default function Login() {
+const Login = () => {
   const navigate = useNavigate();
 
   const {
@@ -26,28 +27,7 @@ export default function Login() {
     } catch (error) {
       setEmailAddress("");
       setPassword("");
-      switch (error.code) {
-        case "auth/invalid-email":
-          setError("Your email address appears to be malformed.");
-          break;
-        case "auth/wrong-password":
-          setError("Your password is wrong.");
-          break;
-        case "auth/user-not-found":
-          setError("User with this email doesn't exist.");
-          break;
-        case "auth/user-disabled":
-          setError("User with this email has been disuserabled.");
-          break;
-        case "auth/too-many-requests":
-          setError("Too many requests. Try again later.");
-          break;
-        case "auth/operation-not-allowed":
-          setError("Signing in with Email and Password is not enabled.");
-          break;
-        default:
-          setError("An undefined Error happened.");
-      }
+      getLoginError(error.code);
     }
   };
 
@@ -110,4 +90,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;
