@@ -6,7 +6,7 @@
 
   - client side rendered app: react (cra)
   - database: firebase (firestore)
-  - styling: tailwindcss
+  - styling: tailwind css
 
 - src structure
 
@@ -24,15 +24,22 @@
   - firestore
     - db structure
       - collections
-        - users: stores referece to photos
+        - users: stores reference to photos
         - photos
   - firebase authentication
     - using email and password
 
+- used
+
+  - PropTypes
+  - Custom Hooks, Context API
+  - Firebase (auth, firestore)
+  - Lazy loading + Skeleton
+
 - dependencies
 
   - `firebase`
-  - `data-fns` for date formating
+  - `data-fns` for date formatting
   - `react-loading-skeleton` animated loading screens
   - `react-router-dom` different pages
   - `prop-types` type checking
