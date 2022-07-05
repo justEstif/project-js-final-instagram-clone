@@ -7,6 +7,7 @@ import "./styles/tailwind.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <FirebaseContext.Provider value={{ firebase, FieldValue }}>
     <App />

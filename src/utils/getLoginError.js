@@ -1,9 +1,9 @@
 const getLoginError = (errorCode) => {
   switch (errorCode) {
     case "auth/invalid-email":
-      return "Invalid Email or Password";
+      return "Invalid Email";
     case "auth/wrong-password":
-      return "Invalid Email or Password";
+      return "Wrong Password";
     case "auth/user-not-found":
       return "User with this email doesn't exist.";
     case "auth/user-disabled":
