@@ -5,13 +5,17 @@ import Suggestions from "./suggestions";
 const Sidebar = () => {
   // , get the info of the logged in user
   const {
-    user: { fullName, username, userId, following },
+    user: { fullName, username, userId, following, docId },
   } = useUser();
 
   return (
     <div className="p-4">
       <User username={username} fullName={fullName} />
-      <Suggestions userId={userId} following={following} />
+      <Suggestions
+        userId={userId}
+        following={following}
+        loggedInUserDocId={docId}
+      />
     </div>
   );
 };
