@@ -1,5 +1,15 @@
 import { firebase } from "../lib/firebase";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  limit,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 const { db } = firebase;
 
 export async function doesUsernameExist(username) {
@@ -24,7 +34,6 @@ export async function getSuggestedProfiles(userId, following) {
   const usersRef = collection(db, "users");
   const resultDoc = await getDocs(usersRef, limit(10));
 
-  //, return users not having same id or in following array
   return resultDoc.docs
     .map((item) => ({
       ...item.data(),
@@ -33,6 +42,30 @@ export async function getSuggestedProfiles(userId, following) {
     .filter(
       (item) => item.userId !== userId && !following.includes(item.userId)
     );
+}
+
+export async function updateLoggedInUserFollowing(
+  loggedInUserDocId,
+  profileId,
+  isFollowingProfile
+) {
+  const followerDocRef = doc(db, "users", loggedInUserDocId);
+  return updateDoc(followerDocRef, {
+    following: isFollowingProfile
+      ? arrayRemove(profileId)
+      : arrayUnion(profileId),
+  });
+}
+
+export async function updateFollowedUserFollowers(
+  profileDocId,
+  userId,
+  isFollowerProfile
+) {
+  const followedDocRef = doc(db, "users", profileDocId);
+  return updateDoc(followedDocRef, {
+    followers: isFollowerProfile ? arrayRemove(userId) : arrayUnion(userId),
+  });
 }
 
 export async function getPhotos(userId, following) {
