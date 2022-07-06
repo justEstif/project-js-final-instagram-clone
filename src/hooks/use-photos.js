@@ -4,9 +4,11 @@ import { getUserByUserId, getPhotos } from "../services/firebase";
 
 const usePhotos = () => {
   const [photos, setPhotos] = useState(null);
+
   const {
     user: { uid: userId = "" },
   } = useContext(UserContext);
+
   useEffect(() => {
     const getTimelinePhotos = async () => {
       const [{ following }] = await getUserByUserId(userId);
