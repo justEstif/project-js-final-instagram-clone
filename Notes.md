@@ -39,7 +39,7 @@
 - dependencies
 
   - `firebase`
-  - `data-fns` for date formatting
+  - `date-fns` for date formatting
   - `react-loading-skeleton` animated loading screens
   - `react-router-dom` different pages
   - `prop-types` type checking
