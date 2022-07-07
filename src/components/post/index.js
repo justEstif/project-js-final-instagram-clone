@@ -6,8 +6,6 @@ import Actions from "./actions";
 import Comments from "./comments";
 import PropTypes from "prop-types";
 const Post = ({ content }) => {
-  // components
-  // -> header, image, actions (like & comment icons), footer, comments
   const commentInput = useRef(null);
   const handleFocus = () => commentInput.current.focus();
   return (
