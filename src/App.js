@@ -1,5 +1,6 @@
-import { lazy, Suspense } from "react";
+import { Fragment, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import * as ROUTES from "./constants/routes";
 import UserContext from "./context/user";
 import useAuthListener from "./hooks/use-auth-listener";
@@ -17,7 +18,7 @@ export default function App() {
   return (
     <UserContext.Provider value={{ user }}>
       <Router>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Fragment></Fragment>}>
           <Routes>
             <Route
               path={ROUTES.DASHBOARD}
@@ -26,9 +27,7 @@ export default function App() {
                   <Dashboard />
                 </ProtectedRoute>
               }
-              exact
             />
-
             <Route
               path={ROUTES.LOGIN}
               element={
@@ -37,7 +36,6 @@ export default function App() {
                 </IsUserLoggedIn>
               }
             />
-
             <Route
               path={ROUTES.SIGN_UP}
               element={
@@ -54,7 +52,6 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-
             <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
           </Routes>
         </Suspense>
