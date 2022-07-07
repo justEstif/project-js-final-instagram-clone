@@ -10,6 +10,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+
 const { db } = firebase;
 
 export async function doesUsernameExist(username) {
@@ -17,6 +18,17 @@ export async function doesUsernameExist(username) {
   const q = query(usersRef, where("username", "==", username.toLowerCase()));
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.length > 0; // return true if some doc exists
+}
+
+export async function getUserByUsername(username) {
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("username", "==", username.toLowerCase()));
+  const querySnapshot = await getDocs(q);
+  const user = querySnapshot.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+  return user;
 }
 
 export async function getUserByUserId(userId) {
@@ -89,4 +101,40 @@ export async function getPhotos(userId, following) {
     })
   );
   return photosWithUserDetails;
+}
+
+export async function getUserPhotosByUsername(username) {
+  const [user] = await getUserByUsername(username);
+  const photosRef = collection(db, "photos");
+  const queryUserId = query(photosRef, where("userId", "==", user.userId));
+  const querySnapshot = await getDocs(queryUserId);
+  const photos = querySnapshot.docs.map((photo) => ({
+    ...photo.data(),
+    docId: photo.id,
+  }));
+  return photos;
+}
+
+export async function isUserFollowingProfile(username, profileUserId) {
+  const [user] = await getUserByUsername(username);
+  return user.following.includes(profileUserId) ? true : false;
+}
+
+export async function toggleFollow(
+  isFollowingProfile,
+  activeUserDocId,
+  profileDocId,
+  profileUserId,
+  followingUserId
+) {
+  await updateLoggedInUserFollowing(
+    activeUserDocId,
+    profileUserId,
+    isFollowingProfile
+  );
+  await updateFollowedUserFollowers(
+    profileDocId,
+    followingUserId,
+    isFollowingProfile
+  );
 }
