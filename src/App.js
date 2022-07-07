@@ -49,9 +49,9 @@ export default function App() {
             <Route
               path={ROUTES.PROFILE}
               element={
-                <IsUserLoggedIn user={user}>
+                <ProtectedRoute user={user}>
                   <Profile />
-                </IsUserLoggedIn>
+                </ProtectedRoute>
               }
             />
 
