@@ -20,7 +20,7 @@ const AddComment = ({ docId, comments, setComments, commentInput }) => {
       return updateDoc(photoRef, { comments: arrayUnion(comment) });
     };
     event.preventDefault();
-    setComments([{ displayName, comment }, ...comments]);
+    setComments([...comments, { displayName, comment }]);
     setComment("");
     updatePhotoComments();
   };
