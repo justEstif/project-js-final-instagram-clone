@@ -4,4 +4,4 @@
 
 ## Live-link
 
-- [Live-link](https://justestif.github.io/project-js-final-instagram-clone/)
+- [Live-link](https://project-js-final-instagram-clone-js09rq5ol-justestif.vercel.app/)
