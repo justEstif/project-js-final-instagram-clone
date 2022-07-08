@@ -50,7 +50,7 @@ export function seedDatabase(db) {
       await addDoc(collection(db, "photos"), {
         photoId: i,
         userId: "2",
-        imageSrc: `./images/users/raphael/${i}.jpg`,
+        imageSrc: `/images/users/raphael/${i}.jpg`,
         caption: "Saint George and the Dragon",
         likes: [],
         comments: [

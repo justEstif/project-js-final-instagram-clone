@@ -53,7 +53,7 @@ const Header = ({
         {user.username && (
           <img
             className="rounded-full h-40 w-40 flex"
-            src={getImg(`./images/avatars/${profileUsername}.jpg`)}
+            src={getImg(`/images/avatars/${profileUsername}.jpg`)}
             alt={`${profileUsername} profile pic`}
           />
         )}

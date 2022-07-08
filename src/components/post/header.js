@@ -7,7 +7,7 @@ const Header = ({ username }) => {
       <div className="flex items-center">
         <Link to={`/p/${username}`} className="flex items-center">
           <img
-            src={getImg(`./images/avatars/${username}.jpg`)}
+            src={getImg(`/images/avatars/${username}.jpg`)}
             className="rounded-full h-8 w-8 flex mr-3"
             alt={`post by ${username}`}
           />
