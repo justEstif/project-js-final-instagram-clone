@@ -17,7 +17,7 @@ export default function App() {
   const { user } = useAuthListener();
   return (
     <UserContext.Provider value={{ user }}>
-      <Router basename="/instagram">
+      <Router>
         <Suspense fallback={<Fragment></Fragment>}>
           <Routes>
             <Route
