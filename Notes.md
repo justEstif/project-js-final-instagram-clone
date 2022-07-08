@@ -75,3 +75,5 @@
 
   - the header component will be dynamic, if the user is logged in or not
     - we get the user from the user context
+
+I completed the project but I was unable to upload it to github pages.
