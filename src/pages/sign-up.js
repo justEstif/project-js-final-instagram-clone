@@ -59,7 +59,7 @@ export default function SignUp() {
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5">
         <img
-          src="/images/iphone-with-profile.jpg"
+          src="./images/iphone-with-profile.jpg"
           alt="iPhone with Instagram"
         />
       </div>
@@ -67,7 +67,7 @@ export default function SignUp() {
         <div className="flex flex-col items-center bg-white p-4 rounded border border-gray-primary mb-4">
           <h1 className="flex justify-center w-full">
             <img
-              src="/images/logo.png"
+              src="./images/logo.png"
               alt="instagram"
               className="my-2 w-6/12"
             />

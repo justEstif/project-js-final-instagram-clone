@@ -14,7 +14,7 @@ const User = ({ username, fullName }) => {
           <div className="flex items-center justify-between col-span-1">
             <img
               className="rounded-full w-16 flex mr-3"
-              src={getImg(`/images/avatars/${username}.jpg`)}
+              src={getImg(`./images/avatars/${username}.jpg`)}
               alt="user profile img"
             />
           </div>

@@ -19,7 +19,7 @@ const Header = () => {
             <h1 className="flex w-full">
               <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
                 <img
-                  src="/images/logo.png"
+                  src="./images/logo.png"
                   className="mt-2 w-6/12"
                   alt="instagram logo"
                 />
@@ -67,7 +67,7 @@ const Header = () => {
                   <Link to={`/p/${user.displayName}`}>
                     <img
                       className="rounded-full h-8 w-8 flex"
-                      src={getImg(`/images/avatars/${user.displayName}.jpg`)}
+                      src={getImg(`./images/avatars/${user.displayName}.jpg`)}
                       alt={`${user.displayName} img`}
                     />
                   </Link>
