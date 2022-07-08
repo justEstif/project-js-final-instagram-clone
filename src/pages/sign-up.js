@@ -23,8 +23,8 @@ export default function SignUp() {
     document.title = "Signup - Instagram";
   }, []);
 
-  const handleSignup = async ({ preventDefault }) => {
-    preventDefault();
+  const handleSignup = async (e) => {
+    e.preventDefault();
     setError("");
     try {
       const usernameExists = await doesUsernameExist(username);
