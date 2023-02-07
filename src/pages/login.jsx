@@ -31,20 +31,34 @@ const Login = () => {
     }
   };
 
+  const handleAnonymousSignIn = async () => {
+    setEmailAddress(import.meta.env.VITE_TESTEMAIL);
+    setPassword(import.meta.env.VITE_TESTPW);
+    setError("");
+    try {
+      await signInWithEmailAndPassword(auth, emailAddress, password);
+      navigate(ROUTES.DASHBOARD);
+    } catch (error) {
+      setEmailAddress("");
+      setPassword("");
+      getLoginError(error.code);
+    }
+  };
+
   useEffect(() => {
     document.title = "Login - Not-Instagram";
   }, []);
 
   return (
-    <div className="container flex mx-auto max-w-screen-md items-center h-screen">
+    <div className="container flex items-center mx-auto max-w-screen-md h-screen">
       <div className="flex w-3/5">
         <img
           src="/images/iphone-with-profile.jpg"
           alt="iPhone with Instagram"
         />
       </div>
-      <div className="flex flex-col w-2/5 ">
-        <div className="flex flex-col items-center bg-white p-4 rounded border border-gray-primary mb-4">
+      <div className="flex flex-col w-2/5">
+        <div className="flex flex-col items-center p-4 mb-4 bg-white rounded border border-gray-primary">
           <h1 className="flex justify-center w-full">
             <img
               src="/images/logo.png"
@@ -58,7 +72,7 @@ const Login = () => {
               aria-label="Enter your email address"
               type="text"
               placeholder="Email address"
-              className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
+              className="py-5 px-4 mr-3 mb-2 w-full h-2 text-sm rounded border text-gray-base border-gray-primary"
               onChange={({ target: { value } }) => setEmailAddress(value)}
               value={emailAddress}
             />
@@ -66,20 +80,29 @@ const Login = () => {
               aria-label="Enter your password"
               type="password"
               placeholder="Password"
-              className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
+              className="py-5 px-4 mr-3 mb-2 w-full h-2 text-sm rounded border text-gray-base border-gray-primary"
               onChange={({ target: { value } }) => setPassword(value)}
               value={password}
             />
-            <button
-              disabled={isInvalid}
-              type="submit"
-              className={`bg-blue-medium w-full rounded h-8 font-bold text-white
-              ${isInvalid && "opacity-50"}`}>
-              Login
-            </button>
+            <div className="flex flex-col gap-4">
+              <button
+                disabled={isInvalid}
+                type="submit"
+                className={`bg-blue-medium w-full rounded h-8 font-bold text-white
+              ${isInvalid && "opacity-50"}`}
+              >
+                Login
+              </button>
+              <button
+                onClick={handleAnonymousSignIn}
+                className={`bg-gray-base w-full rounded h-8 font-bold text-white`}
+              >
+                Anonymous Login
+              </button>
+            </div>
           </form>
         </div>
-        <div className="flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary rounded">
+        <div className="flex flex-col justify-center items-center p-4 w-full bg-white rounded border border-gray-primary">
           <p className="text-sm">
             Don't have an account?{` `}
             <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-medium">
