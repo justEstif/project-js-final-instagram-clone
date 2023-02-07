@@ -5,7 +5,7 @@ import Header from "../components/header";
 
 const Dashboard = () => {
   useEffect(() => {
-    document.title = "Instagram";
+    document.title = "Not-Instagram";
   });
   return (
     <div className="bg-gray-background">

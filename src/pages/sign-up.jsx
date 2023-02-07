@@ -20,7 +20,7 @@ export default function SignUp() {
   } = useContext(FirebaseContext);
 
   useEffect(() => {
-    document.title = "Signup - Instagram";
+    document.title = "Signup - Not-Instagram";
   }, []);
 
   const handleSignup = async (event) => {
